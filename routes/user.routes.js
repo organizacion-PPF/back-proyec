@@ -27,8 +27,6 @@ router.post('/auth/login',
 
 rutaLogin)
 
-
-
 //crear nuevo usuario
 router.get('/api/get-user',
 
@@ -39,7 +37,7 @@ rutaGet)
 //ruta agregar usuarios
 router.post('/registro',
 
-/* validarUser, */
+validarUser,
 validarCampos,
 rutaPost)
 

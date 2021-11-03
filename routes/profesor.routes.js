@@ -17,7 +17,8 @@ rutaGet)
 router.post('/profesor',
 [
     validar_jwt,
-    check('materia', 'la materia seleccionado no es válida')
+
+check('materia', 'la materia seleccionada no es válida')
 .not()
 .isEmpty()
 .custom(siExistemateria),

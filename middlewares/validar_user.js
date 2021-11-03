@@ -4,21 +4,40 @@ const validarUser=
 
 [
 
-    body('nombre_usuario', 'El username ingresado no contiene un formato correcto')
+     check('nombre_usuario', 'El username ingresado no contiene un formato correcto')
     .isString()
     .not()
     .isEmpty(),
     
-    body('email', 'el correo ingresado no contiene un formato correcto')
+     check('email', 'el correo ingresado no contiene un formato correcto')
         .isEmail()
         .not()
         .isEmpty()
         .custom(ExisteEmail),
     
-     body('password', 'El password ingresado no contiene un formato correcto')
+      check('password', 'El password ingresado no contiene un formato correcto')
     .isString()
+    .isLength({ min: 7 })
     .not()
-    .isEmpty()
+    .isEmpty(),
+    
+
+      check('provincia', 'la provincia ingresada no contiene un formato correcto')
+      .isString()
+      .not()
+      .isEmpty(),
+
+       check('profesor', 'el profesor ingresado no contiene un formato correcto')
+      .isBoolean()
+      .not()
+      .isEmpty(),
+
+       check('alumno', 'el profesor ingresado no contiene un formato correcto')
+      .isBoolean()
+      .not()
+      .isEmpty(),
+
+
 
 ]
 
