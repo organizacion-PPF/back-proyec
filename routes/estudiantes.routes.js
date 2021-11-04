@@ -14,6 +14,7 @@ rutaGet)
 //ruta agregar usuarios
 router.post('/estudiante',
  validar_jwt,
+ siExistemateria,
  /* validacionEstudiante, */
 validarCampos,
  rutaPost)
