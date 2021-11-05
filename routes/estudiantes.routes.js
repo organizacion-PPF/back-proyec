@@ -6,21 +6,21 @@ const{
 const {validar_jwt} = require('../middlewares/validar_jwt');
 const {validacionEstudiante}= require("../middlewares/validar_estudiantes.js")
 const { body, check } = require('express-validator');
-//crear nuevo usuario
-router.get('/estudiante',
+
+//crear nuevo estudiante
+router.get('/estudiante/get',
 
 rutaGet)
 
-//ruta agregar usuarios
+//ruta agregar estudiante
 router.post('/estudiante',
  validar_jwt,
- siExistemateria,
- /* validacionEstudiante, */
+ validacionEstudiante,
 validarCampos,
  rutaPost)
 
 
-//ruta editar usuario
+//ruta editar estudiante
 router.put('/estudiante/:id',
 validar_jwt,
 validacionEstudiante,
@@ -30,7 +30,7 @@ rutaPut)
 
 
 //ruta eliminar estudiantes
-router.delete('/estudiante/:id',
+router.delete('/estudiante/delete/:id',
 validar_jwt,
 check('id','No es un id de MongoDB válido').isMongoId(),
 validarCampos,
@@ -38,7 +38,7 @@ rutaDelete)
 
 
 //eliminar estudiantes logicamente
-router.put('/estudiante/delete/:id',
+router.put('/estudiante/deleteLogi/:id',
 validar_jwt,
 check('id','No es un id de MongoDB válido').isMongoId(),
 validarCampos,

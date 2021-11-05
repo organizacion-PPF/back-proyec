@@ -9,18 +9,18 @@ const validacionProfesor=
     .isLength({ min: 15}),
 
     body('nivel', 'el nivel ingresado no contiene un formato correcto')
-    .isString()
+    .isArray()
     .not()
     .isEmpty(),
 
     body('materia', 'La materia ingresada no contiene un formato correcto')
-    .isString()
+    .isArray()
     .not()
     .isEmpty()
     .custom(siExistemateria),
 
     body('horarios', 'el horario ingresado no contiene un formato correcto')
-    .isString()
+    .isArray()
     .not()
     .isEmpty()
    
