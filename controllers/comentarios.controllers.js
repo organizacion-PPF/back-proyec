@@ -32,7 +32,7 @@ ctrlHome.rutaPut = async (req , res)=>{
             const comentario = await Comentario.findByIdAndUpdate(id, body);
             return res.json(comentario)
         } catch (error) {
-            console.log(`error al actulizar usuario: ${error}`)
+            console.log(`error al actulizar comentario: ${error}`)
         }
 
 };
@@ -43,23 +43,13 @@ ctrlHome.rutaDelete = async (req,res)=>{
         try{
             await Comentario.findByIdAndDelete(req.params.id);
 
-            return res.json({msg: 'user removed'})
+            return res.json({msg: 'comentario eliminado'})
         } catch(error){
-            console.log('error al eliminar user ',error)
+            console.log('error al eliminar comentario',error)
         }
 }
 
 
-ctrlHome.rutaLogicalDelete= async (req, res)=>{
 
-        const {id} = req.params;
-        const comentario =await User.findByIdAndUpdate(id,{ activo: false }, {new: true });
-
-        //responde si fue eliminado correctamente
-
-        return res.status(201).json({
-            msg: "user removido logicamente", comentario
-        })
-}
 module.exports = ctrlHome;
 

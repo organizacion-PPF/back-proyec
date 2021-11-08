@@ -15,7 +15,6 @@ const {
     validacionEstudiante
 }= require('../middlewares');
 
-//REGISTRARSE COMO ESTUDIANTE
 
 //mostrar nuevo estudiante
 router.get('/estudiante/get',

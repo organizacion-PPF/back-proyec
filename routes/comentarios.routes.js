@@ -48,12 +48,6 @@ validarCampos,
 rutaDelete)
 
 
-//eliminar comentario logicamente
-routercomentario.put('/comentario/deleteLogi/:id',
-validar_jwt,
-check('id','No es un id de MongoDB válido').isMongoId(),
-validarCampos,
-rutaLogicalDelete)
 
 
 module.exports =routercomentario;

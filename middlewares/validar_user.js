@@ -4,7 +4,7 @@ const validarUser=
 
 [
 
-     check('nombre_usuario', 'El username ingresado no contiene un formato correcto')
+     check('nombre_completo', 'El username ingresado no contiene un formato correcto')
     .isString()
     .not()
     .isEmpty(),
