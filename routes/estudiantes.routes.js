@@ -1,18 +1,28 @@
 const router =require('express').Router();
 const { validarCampos } = require('../helpers/validarCampos');
 const{
-    rutaPost,rutaDelete,rutaGet, rutaPut, rutaLogicalDelete
-}=  require('../controllers/estudiantes.controllers')
-const {validar_jwt} = require('../middlewares/validar_jwt');
-const {validacionEstudiante}= require("../middlewares/validar_estudiantes.js")
+    rutaPost,
+    rutaDelete,
+    rutaGet, 
+    rutaPut, 
+    rutaLogicalDelete
+}=  require('../controllers/estudiantes.controllers');
+
 const { body, check } = require('express-validator');
 
-//crear nuevo estudiante
+const {
+    validar_jwt,
+    validacionEstudiante
+}= require('../middlewares');
+
+//REGISTRARSE COMO ESTUDIANTE
+
+//mostrar nuevo estudiante
 router.get('/estudiante/get',
 
 rutaGet)
 
-//ruta agregar estudiante
+//agregar estudiante
 router.post('/estudiante',
  validar_jwt,
  validacionEstudiante,

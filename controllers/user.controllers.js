@@ -1,70 +1,32 @@
 const ctrlUser = {};
 const User = require('../models/users');
-const {generate_jwt} = require('../helpers/generar_jwt');
 
+//mostrar todos los usuarios
 ctrlUser.rutaGet = async (req,res)=>{
 
-    const usuario = await User.find();
-
-    res.json(usuario);
+        const usuario = await User.find();
+        res.json(usuario);
 };
-
-//Login de usuarios
-ctrlUser.rutaLogin = async (req, res) => {
-
-    const { email, password} = req.body;
-
-    const usuario = await User.findOne({email, password});
-   
-   
-    //Si no encuentra el usuario
-    if(!usuario){
-        return res.status(401).json({
-            msg: "Usuario no existe"
-        })
-    };
-
-    //verificamos si es un usuario activo
-    
-    if(!usuario.activo){
-        res.status(401).json({
-            //Si no lo encuentra activo al usuario pasa
-            msg: "Usuario no existe"
-        })
-    }
-
-    //Si lo encuentra
-
-    const token = await generate_jwt(usuario.id); 
-    
-    //Muestra el token generado
-    res.json({
-        token     
-    }); 
-}
-
-
-
 
 //agrega el usuario
 
 ctrlUser.rutaPost = async (req,res)=>{
      
-    const { nombre_usuario, email, password, provincia, profesor, alumno } = req.body;
+        const { nombre_usuario, email, password, provincia, profesor, alumno } = req.body;
 
-    try {
-        const usuario = new User({ nombre_usuario, email, password, provincia, profesor, alumno });
+        try {
+            const usuario = new User({ nombre_usuario, email, password, provincia, profesor, alumno });
 
-        //Guardar usuario en db
-        await usuario.save();
+            //Guardar usuario en db
+            await usuario.save();
 
-        res.json({
-            msg: 'Usuario agregado exitosamente',
-            usuario
-        });
-    } catch (error) {
-        console.log('Error al guardar los datos del usuario: ', error);
-    };
+            res.json({
+                msg: 'Usuario agregado exitosamente',
+                usuario
+            });
+        } catch (error) {
+            console.log('Error al guardar los datos del usuario: ', error);
+        };
 };
 
 
@@ -73,38 +35,35 @@ ctrlUser.rutaPost = async (req,res)=>{
 
 ctrlUser.rutaPut = async (req , res)=>{
 
-    const { id } = req.params;
-    const { _id, email, password, ...resto } = req.body;
+        const { id } = req.params;
+        const { _id, email, password, ...resto } = req.body;
 
-    try {
-       
-        const usuario = await User.findByIdAndUpdate(id, resto, { new: true });
+        try {
+        
+            const usuario = await User.findByIdAndUpdate(id, resto, { new: true });
 
-        res.json({
-            msg: 'Datos del usuario actualizados exitosamente',
-            usuario
-        });
+            res.json({
+                msg: 'Datos del usuario actualizados exitosamente',
+                usuario
+            });
 
-    } catch (error) {
-        console.log('Error al actualizar los datos del usuario: ', error);
-    }
+        } catch (error) {
+            console.log('Error al actualizar los datos del usuario: ', error);
+        }
 
 };
 
-
-
-
-
+//borrar usuario de la base de datos 
 ctrlUser.rutaDelete = async (req,res)=>{
-    const {id}= req.body;
+        const {id}= req.body;
 
-    try{
-        await User.findByIdAndDelete(req.params.id);
+        try{
+            await User.findByIdAndDelete(req.params.id);
 
-        return res.json({msg: 'user removed'})
-    } catch(error){
-        console.log('error al eliminar user ',error)
-    }
+            return res.json({msg: 'user removed'})
+        } catch(error){
+            console.log('error al eliminar user ',error)
+        }
 };
 
 
@@ -112,16 +71,27 @@ ctrlUser.rutaDelete = async (req,res)=>{
 // eliminacion logica
 ctrlUser.rutaLogicalDelete= async (req, res)=>{
 
-    const {id} = req.params;
+        const { id } = req.params;
+        try {
+            //Verifico que el usuario este activo
+            const inactivo = await User.findById(id);
 
-    const usuario =await User.findByIdAndUpdate(id,{ activo: false }, {new: true });
+            /* console.log(inactivo) */
+            if (!inactivo.estado) {
+                return res.json({
+                    msg: `El usuario ${id} no existe`
+                });
+            };
 
-    
-    //responde si fue eliminado correctamente
+            const usuario = await User.findByIdAndUpdate(id, { estado: false });
 
-    return res.status(201).json({
-        msg: "user removido logicamente", usuario
-    })
+            res.json({
+                msg: 'Usuario borrado de la base de datos exitosamente',
+                usuario
+            });
+        } catch (error) {
+            console.log('Error al borrar los datos del usuario: ', error);
+        };
 }
 
 module.exports = ctrlUser;

@@ -1,7 +1,7 @@
 const {model, Schema}= require('mongoose');
 
 const UserShema = new Schema({
-    nombre_usuario:{
+    nombre_completo:{
         type:String,
         unique: [true, 'El nombre de usuario está duplicado'],
         required: [true, 'El nombre de usuario es necesario']
@@ -19,7 +19,7 @@ const UserShema = new Schema({
         type: String,
         required: [true, 'La provincia es necesaria']
     },
-    activo:{
+    estado:{
         type: Boolean,
         default: true
     },
