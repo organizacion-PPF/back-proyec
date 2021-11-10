@@ -1,6 +1,8 @@
 const ctrlHome = {};
 const Profesor = require('../models/profesor');
 const User=require('../models/users')
+ require('../connection');
+
 
 //ruta get users 
  
@@ -9,6 +11,23 @@ ctrlHome.rutaGet = async (req,res)=>{
         const profesor= await Profesor.find().populate('userId','nombre_usuario');
         res.json(profesor);
 }
+
+//ruta get listar users
+
+ctrlHome.listarprofe = async (req, res) => {
+    const { limite = 5, desde = 0 } = req.query;
+
+    const query = { estado: true };
+
+    const [total, usuarios] = await Promise.all([
+        Profesor.countDocuments(query),
+        Profesor.find(query)
+            .skip(Number(desde))
+            .limit(Number(limite))
+    ]);
+
+    res.json({ total, usuarios });
+};
 
 //ruta agregar users
 

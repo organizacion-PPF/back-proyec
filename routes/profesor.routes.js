@@ -6,7 +6,8 @@ const{
     rutaDelete,
     rutaGet, 
     rutaPut, 
-    rutaLogicalDelete
+    rutaLogicalDelete,
+    listarprofe
 }=  require('../controllers/profesores.controllers');
 
 const { body, check } = require('express-validator');
@@ -23,6 +24,13 @@ router.get('/profesor/get',
 
 rutaGet)
 
+//mostrar listado de profesores}
+
+router.get('/profesor/get/listar',
+
+listarprofe
+)
+
 // agregar profesor
 router.post('/profesor',
 [
@@ -30,6 +38,7 @@ validar_jwt,
  validacionProfesor,
  validarCampos
 ],rutaPost)
+
 
 
 //ruta editar profesor
