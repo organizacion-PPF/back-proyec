@@ -27,16 +27,6 @@ const validarUser=
       .not()
       .isEmpty(),
 
-       check('profesor', 'el profesor ingresado no contiene un formato correcto')
-      .isBoolean()
-      .not()
-      .isEmpty(),
-
-       check('alumno', 'el profesor ingresado no contiene un formato correcto')
-      .isBoolean()
-      .not()
-      .isEmpty(),
-
 
 
 ]

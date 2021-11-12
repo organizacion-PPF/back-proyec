@@ -23,17 +23,6 @@ const UserShema = new Schema({
         type: Boolean,
         default: true
     },
-    profesor:{
-        type: Boolean,
-        default: false,
-        require:true
-    },
-    alumno:{
-        type: Boolean,
-        default: false,
-        require:true
-        
-    }
 
 
 });

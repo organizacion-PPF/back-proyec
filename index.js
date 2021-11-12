@@ -17,7 +17,6 @@ app.set("port", process.env.PORT || 3000);
 //rutas 
 app.use(require('./routes/user.routes'));
 app.use(require('./routes/profesor.routes'));
-app.use(require('./routes/estudiantes.routes'));
 app.use(require('./routes/comentarios.routes'));
 app.use(require('./routes/auth.routes'));
 //devuelve la conexion
