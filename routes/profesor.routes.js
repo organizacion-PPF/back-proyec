@@ -17,14 +17,14 @@ const {
     validacionProfesor 
 }= require('../middlewares');
 
-//REGISTRARSE COMO PROFESOR
+
 
 //mostrar los profesores
 router.get('/profesor/get',
 
 rutaGet)
 
-//mostrar listado de profesores}
+//mostrar listado de profesores
 
 router.get('/profesor/get/listar',
 

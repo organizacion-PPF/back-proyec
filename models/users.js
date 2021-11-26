@@ -19,6 +19,10 @@ const UserShema = new Schema({
         type: String,
         required: [true, 'La provincia es necesaria']
     },
+    rol:{
+        type:String,
+        default:"common_user"
+    },
     estado:{
         type: Boolean,
         default: true
