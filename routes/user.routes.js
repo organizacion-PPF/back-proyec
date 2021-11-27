@@ -17,7 +17,6 @@ const {
 router.get('/get-user',
 
 validarUser,
-tieneRol('ADMIN'),
 validarCampos,
 rutaGet)
 
