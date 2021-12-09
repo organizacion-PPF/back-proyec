@@ -1,14 +1,14 @@
 const router =require('express').Router();
 const { validarCampos } = require('../helpers/validarCampos');
 const { body, check } = require('express-validator');
-
 const{
     rutaPost,rutaDelete,rutaGet, rutaPut, rutaLogicalDelete,rutaGetID
 }=  require('../controllers/user.controllers')
 
 const {
     validar_jwt,
-    validarUser
+    validarUser,
+    tieneRol
 }= require('../middlewares')
 
 //REGISTRO DE USUARIOS
@@ -40,6 +40,7 @@ router.put('/edit-user/:id',
 
 validar_jwt,
 validarUser,
+tieneRol('ADMIN','PROFESOR','USUARIO_COMUN'),
 check('id','No es un id de MongoDB válido').isMongoId(),
 validarCampos,
 rutaPut)
@@ -49,6 +50,7 @@ rutaPut)
 router.delete('/delete-user/:id',
 
 validar_jwt,
+tieneRol('ADMIN'),
 check('id','No es un id de MongoDB válido').isMongoId(),
 validarCampos,
 rutaDelete)
@@ -58,6 +60,7 @@ rutaDelete)
 router.put('/delete-user-logical/:id',
 
 validar_jwt,
+tieneRol('ADMIN'),
 check('id','No es un id de MongoDB válido').isMongoId(),
 validarCampos,
 rutaLogicalDelete)

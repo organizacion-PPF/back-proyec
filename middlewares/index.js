@@ -6,7 +6,8 @@ const validarJWT=require('../middlewares/validar_jwt')
 const validarMateria= require('../middlewares/validar_materia');
 const validarProfesor= require('../middlewares/validar_profesor');
 const validarUser= require('../middlewares/validar_user')
-const validarAuth= require('../middlewares/validar_auth')
+const validarAuth= require('../middlewares/validar_auth');
+const validarRol = require('../middlewares/validar_rol');
  module.exports={
 
         ...validarComentario,
@@ -16,5 +17,6 @@ const validarAuth= require('../middlewares/validar_auth')
         ...validarMateria,
         ...validarProfesor,
         ...validarUser,
-        ... validarAuth
+        ... validarAuth,
+        ...validarRol
  }
