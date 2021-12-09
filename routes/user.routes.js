@@ -16,8 +16,7 @@ const {
 //crear nuevo usuario
 router.get('/get-user',
 
-validarUser,
-validarCampos,
+
 rutaGet)
 
 //ruta para buscar ID
