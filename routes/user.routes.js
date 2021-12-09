@@ -3,7 +3,7 @@ const { validarCampos } = require('../helpers/validarCampos');
 const { body, check } = require('express-validator');
 
 const{
-    rutaPost,rutaDelete,rutaGet, rutaPut, rutaLogicalDelete
+    rutaPost,rutaDelete,rutaGet, rutaPut, rutaLogicalDelete,rutaGetID
 }=  require('../controllers/user.controllers')
 
 const {
@@ -19,6 +19,13 @@ router.get('/get-user',
 validarUser,
 validarCampos,
 rutaGet)
+
+//ruta para buscar ID
+
+router.get('/get-userID/:id',
+
+
+rutaGetID)
 
 //ruta agregar usuarios
 router.post('/registro',

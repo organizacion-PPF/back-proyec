@@ -8,6 +8,14 @@ ctrlUser.rutaGet = async (req,res)=>{
         res.json(usuario);
 };
 
+//mostrar usurios por ID
+
+ctrlUser.rutaGetID = async (req,res)=>{
+    const { id } = req.params;
+    const usuario = await User.findById(id);
+    res.json(usuario);
+};
+
 //agrega el usuario
 
 ctrlUser.rutaPost = async (req,res)=>{

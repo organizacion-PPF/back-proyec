@@ -8,7 +8,7 @@ const User=require('../models/users')
  
 ctrlHome.rutaGet = async (req,res)=>{
 
-        const profesor= await Profesor.find().populate('userId','nombre_usuario');
+        const profesor= await Profesor.find().populate('userId','nombre_completo');
         res.json(profesor);
 }
 
