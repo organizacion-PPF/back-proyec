@@ -19,10 +19,7 @@ const validacionProfesor=
     .isEmpty()
     .custom(siExistemateria),
 
-   check('horarios', 'el horario ingresado no contiene un formato correcto')
-    .isArray()
-    .not()
-    .isEmpty()
+  
    
 ]
 

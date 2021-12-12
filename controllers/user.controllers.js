@@ -8,11 +8,11 @@ ctrlUser.rutaGet = async (req,res)=>{
         res.json(usuario);
 };
 
-//mostrar usurios por ID
+//mostrar usurios por email
 
 ctrlUser.rutaGetID = async (req,res)=>{
-    const { id } = req.params;
-    const usuario = await User.findById(id);
+    const { email } = req.params;
+    const usuario = await User.find(email);
     res.json(usuario);
 };
 

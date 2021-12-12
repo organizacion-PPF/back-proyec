@@ -1,28 +1,34 @@
-
-const router =require('express').Router();
-const { validarCampos } = require('../helpers/validarCampos');
-
-const{
-    rutaLogin,
-    rutaGet
-}=  require('../controllers/auth.controllers')
+const router = require('express').Router();
+const {
+    validarCampos
+} = require('../helpers/validarCampos');
 
 const {
-    validarAuth
-}= require('../middlewares');
+    rutaLogin,
+    rutaGet,
+    revalidarToken
+} = require('../controllers/auth.controllers')
+
+const {
+    validarAuth,
+    validar_jwt
+} = require('../middlewares');
 
 //RUTA LOGIN
 
 //mostrar los usuarios logueados 
-router.get('/get-auth',
+router.get('/get-auth', rutaGet)
 
-rutaGet)
+//ruta TOKEN
+
+router.get('/get-userID', [validar_jwt], revalidarToken)
 
 //loguearse
-router.post('/auth/login', 
-validarAuth,
-validarCampos,
+router.post('/auth/login',
 
-rutaLogin)
+    validarAuth,
+    validarCampos,
 
-module.exports =router;
+    rutaLogin)
+
+module.exports = router;

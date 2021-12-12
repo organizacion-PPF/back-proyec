@@ -1,6 +1,6 @@
 const ctrlAuthUser = {};
 const User=require('../models/users')
-
+const Profesor = require('../models/profesor');
 const {generate_jwt} = require('../helpers/generar_jwt');
 
 //Login de usuarios
@@ -50,5 +50,29 @@ ctrlAuthUser.rutaLogin = async (req, res) => {
         
      
 }
+
+ctrlAuthUser.revalidarToken = async (req, res) => {
+
+    const {_id } = req.usuario;
+
+    const query = {userId: _id}
+
+    const usuario = await User.findById(_id)
+
+    const profesor= await Profesor.find(query).populate('userId', 'nombre_completo')
+    console.log(profesor)
+    const token = await generate_jwt(_id);
+
+
+    res.json({
+        ok: true,
+        msg: 'Token revalidado',
+        usuario,
+        profesor,
+        token
+
+    })
+}
+
 
 module.exports = ctrlAuthUser ;

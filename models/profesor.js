@@ -5,7 +5,7 @@ const  ProfesoresShema = new Schema({
     userId:{type:Schema.Types.ObjectId, ref: 'User'
       },
 
-    HoraId:{type:Schema.Types.ObjectId, ref: 'Horario'},
+    
 
 
     descripcion:{
@@ -25,15 +25,7 @@ const  ProfesoresShema = new Schema({
         }
 
     ],
-    horarios:[
-
-        {
-            type: Date,
-            required: [true, "el horario es necesario"]
-            
-        }
-
-    ],
+  
     honorarios:{
         
         type: Number,

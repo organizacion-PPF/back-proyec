@@ -6,6 +6,7 @@ const validar_jwt = async (req, res, next) => {
 
     const token = req.header('token');
 
+    console.log(token)
     //verifica si el token esta en el header para aprobar el ingreso
 
     if(!token) {

@@ -19,12 +19,7 @@ router.get('/get-user',
 
 rutaGet)
 
-//ruta para buscar ID
 
-router.get('/get-userID/:id',
-
-
-rutaGetID)
 
 //ruta agregar usuarios
 router.post('/registro',
